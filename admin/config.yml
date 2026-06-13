@@ -1,6 +1,6 @@
 backend:
- name: github
-  repo: mukul-sachdeva/craftwithlaser-web # Ensure this is your username/repo
+  name: github
+  repo: mukulsachdeva-cloud/craftwithlaser-web # Ensure this is your username/repo
   branch: main
 
 media_folder: "assets/uploads"
