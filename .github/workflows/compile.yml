@@ -1,0 +1,28 @@
+name: Compile Gallery Engine
+on:
+  push:
+    paths:
+      - 'data/**' # Runs only when you add new images or categories in your admin panel
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Execute Compiler Script
+        run: node compile-gallery.js
+
+      - name: Commit and Push Compiled Index
+        run: |
+          git config --global user.name "Gallery-Bot"
+          git config --global user.email "bot@craftwithlaser.com.au"
+          git add gallery-index.json
+          git diff-index --quiet HEAD || git commit -m "Automated gallery-index.json rebuild [skip ci]"
+          git push
