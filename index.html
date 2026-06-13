@@ -304,27 +304,92 @@
         lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.classList.remove('active'); });
 
         // Fetch published structural data automatically from Decap CMS's generated folder tree
-        fetch('/gallery-index.json')
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.items && data.items.length > 0) {
-                    galleryContainer.innerHTML = ''; // Clear fallback states cleanly
-                    data.items.forEach(item => {
-                        const el = document.createElement('div');
-                        el.className = 'gallery-item';
-                        el.innerHTML = `
-                            <img src="${item.image}" alt="${item.title}">
-                            <div class="gallery-info">
-                                <h4>${item.title}</h4>
-                                <p>${item.type || 'Custom Work'}</p>
-                            </div>
-                        `;
-                        // Fire lightbox zoom engine when clicked
-                        el.addEventListener('click', () => openLightbox(item.image, item.title, item.type));
-                        galleryContainer.appendChild(el);
-                    });
+       // Load relational data cleanly from the compiled index
+fetch('/gallery-index.json')
+    .then(res => res.json())
+    .then(data => {
+        // FORCE CHECK: Try to read 'galleries', fallback to 'items' if the script named it differently
+        const galleryList = data.galleries || data.items;
+
+        if(galleryList && galleryList.length > 0) {
+            masterContainer.innerHTML = ''; // Clear the "Awaiting First Upload" message cleanly
+            
+            galleryList.forEach(gallery => {
+                // If the data structure is flat items instead of categories
+                if (!gallery.items && (gallery.image || gallery.images)) {
+                    // Render as a single flat item
+                    renderSingleItem(gallery, masterContainer);
+                } 
+                // If it's a properly grouped category with items inside
+                else if (gallery.items && gallery.items.length > 0) {
+                    renderCategoryGallery(gallery, masterContainer);
                 }
-            })
+            });
+        }
+    }).catch(err => console.log("System initializing tracking route connection setup.", err));
+
+// Helper to render grouped custom categories
+function renderCategoryGallery(gallery, container) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'gallery-wrapper';
+    wrapper.innerHTML = `
+        <div class="section-header">
+            <h2>${gallery.title}</h2>
+            <p>${gallery.description || ''}</p>
+        </div>
+        <div class="gallery-grid" id="grid-${gallery.id || 'default'}"></div>
+    `;
+    container.appendChild(wrapper);
+    
+    const gridContainer = document.getElementById(`grid-${gallery.id || 'default'}`);
+    gallery.items.forEach(item => {
+        const photosArray = item.images || [{image: item.image}];
+        const mainImage = photosArray[0] && photosArray[0].image ? photosArray[0].image : 'logo.png';
+        
+        const itemCard = document.createElement('div');
+        itemCard.className = 'gallery-item';
+        itemCard.innerHTML = `
+            <img src="${mainImage}" alt="${item.title}">
+            <div class="gallery-info">
+                <h4>${item.title}</h4>
+                <p><i class="fa-solid fa-images"></i> ${photosArray.length} Photos</p>
+            </div>
+        `;
+        itemCard.addEventListener('click', () => openCarousel(photosArray, item.title));
+        gridContainer.appendChild(itemCard);
+    });
+}
+
+// Fallback helper to render flat items if categories aren't processed yet
+function renderSingleItem(item, container) {
+    // Ensure grid container exists
+    let grid = document.getElementById('flat-production-grid');
+    if(!grid) {
+        const header = document.createElement('div');
+        header.className = 'section-header';
+        header.innerHTML = `<h2>Production Gallery</h2><p>Real-time updates straight from our manufacturing floor.</p>`;
+        container.appendChild(header);
+        
+        grid = document.createElement('div');
+        grid.className = 'gallery-grid';
+        grid.id = 'flat-production-grid';
+        container.appendChild(grid);
+    }
+    const photosArray = item.images || [{image: item.image}];
+    const mainImage = photosArray[0] && photosArray[0].image ? photosArray[0].image : 'logo.png';
+    
+    const itemCard = document.createElement('div');
+    itemCard.className = 'gallery-item';
+    itemCard.innerHTML = `
+        <img src="${mainImage}" alt="${item.title}">
+        <div class="gallery-info">
+            <h4>${item.title}</h4>
+            <p>${item.type || 'Custom Piece'}</p>
+        </div>
+    `;
+    itemCard.addEventListener('click', () => openCarousel(photosArray, item.title));
+    grid.appendChild(itemCard);
+}
             .catch(err => console.log("System initializing tracking route connection setup."));
     </script>
 </body>
