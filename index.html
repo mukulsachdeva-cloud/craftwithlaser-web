@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         /* ─── DESIGN SYSTEM (DEEP SPACE / LIGHT STREAKS) ─── */
         :root {
@@ -80,7 +80,19 @@
             display: inline-block;
         }
         .btn:hover { opacity: 0.9; transform: translateY(-1px); }
-
+.social-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(200,88,26,0.25);
+    display: flex;             /* Alignment */
+    align-items: center;       /* Vertical centering */
+    justify-content: center;   /* Horizontal centering */
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: border-color 0.3s, color 0.3s;
+    border-radius: 50%;        /* Keeps it perfectly round */
+}
         /* ─── HERO SECTION ─── */
         .hero {
             display: grid;
@@ -276,8 +288,8 @@
                     <p>Comprehensive slice mapping parameters, layer-height calculations, support geometry generation, and raw polymer finishing methods.</p>
                     <ul>
                         <li>FDM Solid Profiles</li>
-                        <li>SLA Resin Frameworks</li>
-                        <li>Orca / Bambu Data Prep</li>
+                        
+                        <li>Orca Prep</li>
                     </ul>
                 </div>
             </div>
@@ -324,10 +336,13 @@
                 <p>&copy; 2026 CraftWithLaser.com.au. All Rights Reserved.</p>
                 <p style="font-family:'DM Mono'; font-size:0.75rem;">System Year: 2026</p>
             </div>
-            <div class="footer-socials">
-              <a class="social-btn" href="https://www.facebook.com/craftwithlaser" target="_blank" title="Facebook">f</a>
-              <a class="social-btn" href="https://www.instagram.com/craftwithlaser" target="_blank" title="Instagram">ig</a>
-  #<a class="social-btn" href="#" title="TikTok">tt</a>
+           <div class="footer-socials">
+  <a class="social-btn" href="https://www.facebook.com/craftwithlaser" target="_blank" title="Facebook">
+    <i class="fa-brands fa-facebook-f"></i>
+  </a>
+  <a class="social-btn" href="https://www.instagram.com/craftwithlaser" target="_blank" title="Instagram">
+    <i class="fa-brands fa-instagram"></i>
+  </a>
 </div>
         </div>
     </footer>
