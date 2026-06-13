@@ -151,13 +151,21 @@
         const lightboxCaption = document.getElementById('lightbox-caption');
         const lightboxCounter = document.getElementById('lightbox-counter');
         
-        let currentImagesArray = [];
+let currentImagesArray = [];
         let currentImageIndex = 0;
         let currentProjectTitle = "";
 
         function openCarousel(imagesList, projectTitle) {
-            if(!imagesList || imagesList.length === 0) return;
-            currentImagesArray = imagesList;
+            // Filter out any broken, empty, or undefined entries instantly
+            const validImages = (imagesList || []).filter(item => item && (item.image || item.Photo || typeof item === 'string'));
+            if(validImages.length === 0) return;
+            
+            // Clean up the array map so the carousel always reads an exact '.image' property
+            currentImagesArray = validImages.map(item => {
+                if (typeof item === 'string') return { image: item };
+                return { image: item.image || item.Photo };
+            });
+            
             currentProjectTitle = projectTitle;
             currentImageIndex = 0;
             updateCarouselView();
@@ -165,9 +173,12 @@
         }
 
         function updateCarouselView() {
-            lightboxImg.src = currentImagesArray[currentImageIndex].image;
-            lightboxCaption.innerText = currentProjectTitle;
-            lightboxCounter.innerText = `Image ${currentImageIndex + 1} of ${currentImagesArray.length}`;
+            // Double safety fallback protection loop
+            if (currentImagesArray[currentImageIndex] && currentImagesArray[currentImageIndex].image) {
+                lightboxImg.src = currentImagesArray[currentImageIndex].image;
+                lightboxCaption.innerText = currentProjectTitle;
+                lightboxCounter.innerText = `Image ${currentImageIndex + 1} of ${currentImagesArray.length}`;
+            }
         }
 
         document.getElementById('carousel-next').addEventListener('click', (e) => { e.stopPropagation(); currentImageIndex = (currentImageIndex + 1) % currentImagesArray.length; updateCarouselView(); });
@@ -175,11 +186,10 @@
         document.getElementById('lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
         lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.classList.remove('active'); });
 
-        // HYPER-ROBUST DATA READER FETCH (Clears out layout cache using a timestamp query)
+        // HYPER-ROBUST DATA READER FETCH
         fetch('/gallery-index.json?t=' + new Date().getTime())
             .then(res => res.json())
             .then(data => {
-                // UNIVERSAL DECODER: Reads categories or flat fallback structures automatically
                 const targetList = data.galleries || data.items || [];
                 
                 if(targetList.length === 0) {
@@ -190,12 +200,9 @@
                 masterContainer.innerHTML = ''; // Safely drop loading string
                 
                 targetList.forEach(gallery => {
-                    // Scenario A: Standard structured category container filled with items
                     if (gallery.items && gallery.items.length > 0) {
                         renderCategoryWrapper(gallery);
-                    } 
-                    // Scenario B: Flat single elements array
-                    else if (!gallery.items && (gallery.image || gallery.images)) {
+                    } else if (!gallery.items && (gallery.image || gallery.images || gallery.Photo)) {
                         renderFlatElement(gallery);
                     }
                 });
@@ -218,19 +225,28 @@
             
             const gridContainer = document.getElementById(`grid-${gallery.id || 'default'}`);
             gallery.items.forEach(item => {
-                const photosArray = item.images || [{image: item.image}];
-                const mainImg = photosArray[0] && photosArray[0].image ? photosArray[0].image : 'logo.png';
+                // Safeguard both individual uploads and array structures
+                let photosArray = item.images || item.photos || [];
+                if (photosArray.length === 0 && (item.image || item.Photo)) {
+                    photosArray = [{ image: item.image || item.Photo }];
+                }
+                
+                const firstImgObject = photosArray[0];
+                let mainImg = 'logo.png'; // Universal branding fallback
+                if (firstImgObject) {
+                    mainImg = typeof firstImgObject === 'string' ? firstImgObject : (firstImgObject.image || firstImgObject.Photo || 'logo.png');
+                }
                 
                 const card = document.createElement('div');
                 card.className = 'gallery-item';
                 card.innerHTML = `
-                    <img src="${mainImg}">
+                    <img src="${mainImg}" alt="${item.title || 'Portfolio Item'}">
                     <div class="gallery-info">
-                        <h4>${item.title}</h4>
+                        <h4>${item.title || 'Bespoke Creation'}</h4>
                         <p><i class="fa-solid fa-images"></i> ${photosArray.length} Photos</p>
                     </div>
                 `;
-                card.addEventListener('click', () => openCarousel(photosArray, item.title));
+                card.addEventListener('click', () => openCarousel(photosArray, item.title || 'Bespoke Creation'));
                 gridContainer.appendChild(card);
             });
         }
@@ -244,19 +260,28 @@
                 masterContainer.appendChild(wrapper);
                 flatGrid = document.getElementById('flat-grid-system');
             }
-            const photosArray = item.images || [{image: item.image}];
-            const mainImg = photosArray[0] && photosArray[0].image ? photosArray[0].image : 'logo.png';
+            
+            let photosArray = item.images || item.photos || [];
+            if (photosArray.length === 0 && (item.image || item.Photo)) {
+                photosArray = [{ image: item.image || item.Photo }];
+            }
+            
+            const firstImgObject = photosArray[0];
+            let mainImg = 'logo.png';
+            if (firstImgObject) {
+                mainImg = typeof firstImgObject === 'string' ? firstImgObject : (firstImgObject.image || firstImgObject.Photo || 'logo.png');
+            }
             
             const card = document.createElement('div');
             card.className = 'gallery-item';
             card.innerHTML = `
-                <img src="${mainImg}">
+                <img src="${mainImg}" alt="${item.title || 'Portfolio Item'}">
                 <div class="gallery-info">
-                    <h4>${item.title}</h4>
-                    <p>${item.type || 'Bespoke Item'}</p>
+                    <h4>${item.title || 'Bespoke Creation'}</h4>
+                    <p>${item.type || 'Custom Piece'}</p>
                 </div>
             `;
-            card.addEventListener('click', () => openCarousel(photosArray, item.title));
+            card.addEventListener('click', () => openCarousel(photosArray, item.title || 'Bespoke Creation'));
             flatGrid.appendChild(card);
         }
     </script>
