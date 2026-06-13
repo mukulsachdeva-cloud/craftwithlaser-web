@@ -1,9 +1,53 @@
 {
-  "items": [
+  "galleries": [
     {
-      "type": "UV Printing",
-      "title": "Puzzle",
-      "image": "/assets/uploads/156825.jpg"
+      "id": "crystal-engraving",
+      "title": "UV Laser & Inner Crystal Engraving",
+      "description": "High-fidelity subterranean micro-fracture marking inside optical crystal and premium sub-surface glass panels.",
+      "items": []
+    },
+    {
+      "id": "industrial-laser",
+      "title": "3D Printing & Industrial Laser Work",
+      "description": "Heavy-duty laser cutting up to 8mm metal blanks, custom 3D printing manufacturing, and premium UV Printing layouts.",
+      "items": []
+    },
+    {
+      "id": "laser-training",
+      "title": "Industrial Laser Training Programs",
+      "description": "Professional studio mastering classes for the xTool P2 (CO2), F1 Ultra (Fiber/Diode), and F2 Ultra UV systems.",
+      "items": []
+    },
+    {
+      "id": "2",
+      "title": "Metal Work",
+      "description": "Display Metal Work",
+      "items": []
+    },
+    {
+      "id": "1",
+      "title": "UV PRINTING",
+      "description": "UV Priting gallery",
+      "items": [
+        {
+          "title": "UV Portraits",
+          "category": "1",
+          "images": [
+            "/assets/uploads/156567.jpg",
+            "/assets/uploads/153825.jpg",
+            "/assets/uploads/154008.jpg"
+          ]
+        },
+        {
+          "type": "UV Printing",
+          "title": "Puzzle",
+          "image": "/assets/uploads/156825.jpg",
+          "category": "1",
+          "images": [
+            "/assets/uploads/156825.jpg"
+          ]
+        }
+      ]
     }
   ]
 }
