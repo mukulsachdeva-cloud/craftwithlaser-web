@@ -5,19 +5,18 @@ backend:
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
-slug:
-  encoding: "ascii"
-  clean_accents: true
-  sanitize_replacement: "-"
-
 collections:
-  - name: "gallery"
-    label: "Production Floor Items"
-    folder: "data/gallery"
-    create: true
-    slug: "{{slug}}"
-    format: "json"
-    fields:
-      - {label: "Project Title", name: "title", widget: "string"}
-      - {label: "Craft Type", name: "type", widget: "select", options: ["UV Printing", "Inner Crystal", "Laser Work", "3D Printing"]}
-      - {label: "Project Image File", name: "image", widget: "image"}
+  - name: "gallery_data"
+    label: "Production Floor Management"
+    files:
+      - file: "gallery-index.json"
+        label: "Gallery Items Inventory"
+        name: "gallery_list"
+        fields:
+          - name: items
+            label: "Uploaded Pieces"
+            widget: list
+            fields:
+              - {label: "Project Title", name: "title", widget: "string"}
+              - {label: "Craft Type", name: "type", widget: "select", options: ["UV Printing", "Inner Crystal", "Laser Work", "3D Printing"]}
+              - {label: "Project Image File", name: "image", widget: "image"}
