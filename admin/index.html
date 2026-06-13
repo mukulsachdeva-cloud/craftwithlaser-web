@@ -4,10 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CraftWithLaser Studio Manager</title>
-  <!-- Force the engine to locate the configuration tree layout explicitly -->
-  <link rel="cms-config" type="text/yaml" href="/admin/config.yml" />
+  <!-- Explicitly force the engine to find the config file route locally -->
+  <link rel="cms-config" type="text/yaml" href="./config.yml" />
 </head>
 <body>
-  <script type="module" src="https://unpkg.com/@sveltia/cms"></script>
+  <!-- data-cfasync="false" forces the script to boot without getting blocked by server layers -->
+  <script data-cfasync="false" type="module" src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 </body>
 </html>
