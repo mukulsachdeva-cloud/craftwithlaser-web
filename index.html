@@ -87,11 +87,34 @@
     <div>
         <div class="hero-tag">Industrial Custom Crafting & Academy</div>
         <h1>WE TURN <span>IDEAS</span> INTO MASTERPIECES</h1>
-        <p>Specialising in heavy-duty 3D Printing, 8mm Metal Laser Cutting, UV Printing, and Inner Crystal Engraving. We also provide certified machine training on industrial xTool P2, F1 Ultra, and F2 Ultra UV architectures.</p>
+        <p>Specialising in heavy-duty 3D Printing, Metal Engraving, laser cutting-Wood, Acrylic, upto 8mm Metal Laser Cutting, UV Printing, and Inner Crystal Engraving. We also provide certified machine training on industrial xTool P2, F1 Ultra, and F2 Ultra UV architectures.</p>
         <a href="tel:+61421518013" class="btn">Book a Training Class</a>
     </div>
-    <div style="border: 1px solid var(--border-glow); border-radius: 12px; overflow: hidden; background: #0c0c10; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;">
-        <span style="font-family:'DM Mono'; font-size:0.8rem; color:var(--cyan);">[ LAB ACTIVE ]</span>
+    <!-- MACHINERY SHOWCASE CAROUSEL -->
+    <div style="border: 1px solid var(--border-glow); border-radius: 12px; overflow: hidden; background: #0c0c10; aspect-ratio: 4/3; position: relative;">
+        <!-- Slide 1: xTool P2 -->
+        <div class="hero-slide active-slide" style="position: absolute; width: 100%; height: 100%; opacity: 1; transition: opacity 1s ease-in-out;">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/14339794374383420093_0" style="width: 100%; height: 100%; object-fit: cover;" alt="xTool P2 CO2 Laser Cutter">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 15px; font-family: 'DM Mono'; font-size: 0.8rem; color: var(--cyan);">
+                [ MACHINE 01 ] // xTool P2 // Smart CO2 Laser Laser Cutting
+            </div>
+        </div>
+        
+        <!-- Slide 2: xTool Industrial Ultra / MetalFab -->
+        <div class="hero-slide" style="position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out;">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/5691116535485723955_0" style="width: 100%; height: 100%; object-fit: cover;" alt="xTool F1/F2 Ultra Laser Systems">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 15px; font-family: 'DM Mono'; font-size: 0.8rem; color: var(--cyan);">
+                [ MACHINE 02 ] // xTool F1/F2 Ultra // High-Speed Fiber & UV Engraving
+            </div>
+        </div>
+
+        <!-- Slide 3: EufyMake Precision 3D Printing -->
+        <div class="hero-slide" style="position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out;">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/9639136372442951192_0" style="width: 100%; height: 100%; object-fit: cover;" alt="EufyMake 3D Printing Station">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 15px; font-family: 'DM Mono'; font-size: 0.8rem; color: var(--cyan);">
+                [ MACHINE 03 ] // EufyMake Automation // High-Precision 3D Manufacturing
+            </div>
+        </div>
     </div>
 </section>
 
@@ -284,6 +307,25 @@ let currentImagesArray = [];
             card.addEventListener('click', () => openCarousel(photosArray, item.title || 'Bespoke Creation'));
             flatGrid.appendChild(card);
         }
+        // HERO INTERACTION MACHINERY ROTATION ENGINE
+        let heroSlideIndex = 0;
+        const heroSlides = document.querySelectorAll('.hero-slide');
+
+        function rotateHeroSlides() {
+            if (heroSlides.length === 0) return;
+            
+            // Fade out current slide
+            heroSlides[heroSlideIndex].style.opacity = '0';
+            
+            // Move to next slide array index safely
+            heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+            
+            // Fade in next slide
+            heroSlides[heroSlideIndex].style.opacity = '1';
+        }
+
+        // Trigger a clean rotational shift every 4 seconds
+        setInterval(rotateHeroSlides, 4000);
     </script>
 </body>
 </html>
