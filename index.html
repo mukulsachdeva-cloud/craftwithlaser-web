@@ -6,21 +6,19 @@
     <title>CraftWithLaser | Precision Crafting, UV Printing & Training</title>
     <meta name="description" content="Premium laser engraving, UV printing, and 3D printing services and machine training in Bellbowrie, QLD.">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <style>
-        /* ─── DESIGN SYSTEM (DEEP SPACE / LIGHT STREAKS) ─── */
+        /* ─── DESIGN SYSTEM ─── */
         :root {
             --bg-dark: #070709;
             --card-bg: #111115;
             --border-glow: #1f1f27;
             --text-light: #ffffff;
             --text-muted: #94a3b8;
-            
-            /* Logo Gradient Colors */
             --cyan: #00d2ff;
             --magenta: #ff00ff;
             --orange: #ff4500;
@@ -42,113 +40,45 @@
         header {
             border-bottom: 1px solid var(--border-glow);
             backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: sticky; top: 0; z-index: 100;
             background: rgba(7, 7, 9, 0.8);
         }
-        .nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 90px;
-        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 90px; }
         .logo { height: 50px; display: block; }
         nav a {
             font-family: 'DM Mono', monospace;
             color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-left: 32px;
-            transition: color 0.3s;
+            text-decoration: none; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            margin-left: 32px; transition: color 0.3s;
         }
         nav a:hover { color: var(--text-light); }
         
         .btn {
             background: linear-gradient(135deg, var(--orange), var(--magenta));
-            color: white;
-            padding: 12px 28px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            transition: opacity 0.3s, transform 0.2s;
-            display: inline-block;
+            color: white; padding: 12px 28px; text-decoration: none;
+            border-radius: 6px; font-family: 'DM Mono', monospace;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;
+            transition: opacity 0.3s, transform 0.2s; display: inline-block;
         }
         .btn:hover { opacity: 0.9; transform: translateY(-1px); }
-.social-btn {
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(200,88,26,0.25);
-    display: flex;             /* Alignment */
-    align-items: center;       /* Vertical centering */
-    justify-content: center;   /* Horizontal centering */
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 1rem;
-    transition: border-color 0.3s, color 0.3s;
-    border-radius: 50%;        /* Keeps it perfectly round */
-}
+
         /* ─── HERO SECTION ─── */
-        .hero {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            padding: 100px 0;
-            align-items: center;
-        }
-        .hero-tag {
-            font-family: 'DM Mono', monospace;
-            color: var(--cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-size: 0.85rem;
-            margin-bottom: 16px;
-        }
-        .hero h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3.5rem, 6vw, 6rem);
-            line-height: 0.95;
-            letter-spacing: 0.02em;
-            margin-bottom: 24px;
-        }
-        .hero h1 span {
-            background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.15rem;
-            max-width: 540px;
-            margin-bottom: 40px;
-        }
+        .hero { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; padding: 100px 0; align-items: center; }
+        .hero-tag { font-family: 'DM Mono', monospace; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.85rem; margin-bottom: 16px; }
+        .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 6vw, 6rem); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 24px; }
+        .hero h1 span { background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-muted); font-size: 1.15rem; max-width: 540px; margin-bottom: 40px; }
 
         /* ─── SECTIONS COMMON ─── */
         section { padding: 100px 0; border-bottom: 1px solid var(--border-glow); }
         .section-header { margin-bottom: 60px; }
-        .section-header h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 3.5rem;
-            letter-spacing: 0.03em;
-            margin-bottom: 12px;
-        }
+        .section-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; letter-spacing: 0.03em; margin-bottom: 12px; }
         .section-header p { color: var(--text-muted); font-size: 1.1rem; }
 
         /* ─── GRID CARD LAYOUT ─── */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            padding: 40px;
-            border-radius: 12px;
-            position: relative;
-            transition: border-color 0.3s, transform 0.3s;
-        }
+        .card { background: var(--card-bg); border: 1px solid var(--border-glow); padding: 40px; border-radius: 12px; position: relative; transition: border-color 0.3s, transform 0.3s; }
         .card:hover { border-color: #333344; transform: translateY(-4px); }
         .card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.05em; margin-bottom: 16px; }
         .card h3 span { color: var(--cyan); }
@@ -157,39 +87,41 @@
         .card ul li { font-size: 0.9rem; margin-bottom: 8px; color: var(--text-light); display: flex; align-items: center; }
         .card ul li::before { content: "→"; color: var(--magenta); margin-right: 10px; font-family: monospace; }
 
-        /* ─── DYNAMIC PRODUCTION GALLERY ─── */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
+        /* ─── CLICKABLE INTERACTIVE GALLERY ─── */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .gallery-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            aspect-ratio: 1 / 1;
+            background: var(--card-bg); border: 1px solid var(--border-glow);
+            border-radius: 8px; overflow: hidden; position: relative;
+            aspect-ratio: 1 / 1; cursor: pointer;
         }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .gallery-item:hover img { transform: scale(1.04); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+        .gallery-item:hover img { transform: scale(1.05); }
         .gallery-info {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            padding: 20px;
-            transform: translateY(10px);
-            opacity: 0;
-            transition: transform 0.3s, opacity 0.3s;
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            padding: 20px; opacity: 0; transform: translateY(10px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
         .gallery-item:hover .gallery-info { transform: translateY(0); opacity: 1; }
         .gallery-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.05em; }
         .gallery-info p { font-size: 0.8rem; color: var(--cyan); text-transform: uppercase; font-family: 'DM Mono', monospace; }
+
+        /* ─── PRODUCTION LIGHTBOX SCREEN POPUP ─── */
+        .lightbox-overlay {
+            position: fixed; inset: 0; background: rgba(5, 5, 7, 0.95);
+            z-index: 1000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+        .lightbox-overlay.active { opacity: 1; pointer-events: auto; }
+        .lightbox-content { max-width: 85vw; max-height: 80vh; position: relative; text-align: center; }
+        .lightbox-content img { max-width: 100%; max-height: 75vh; border-radius: 8px; border: 1px solid var(--border-glow); box-shadow: 0 0 30px rgba(0, 210, 255, 0.15); }
+        .lightbox-caption { margin-top: 15px; font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.05em; color: var(--text-light); }
+        .lightbox-close {
+            position: absolute; top: -45px; right: 0; background: none; border: none;
+            color: var(--text-muted); font-size: 2rem; cursor: pointer; transition: color 0.2s;
+        }
+        .lightbox-close:hover { color: var(--magenta); }
 
         /* ─── FOOTER ─── */
         footer { padding: 60px 0; background: #040405; color: var(--text-muted); font-size: 0.9rem; }
@@ -197,6 +129,14 @@
         .footer-col h4 { color: var(--text-light); margin-bottom: 16px; font-family: 'DM Mono', monospace; font-size: 0.85rem; text-transform: uppercase; }
         .footer-col p, .footer-col a { color: var(--text-muted); text-decoration: none; margin-bottom: 8px; display: block; }
         .footer-col a:hover { color: var(--text-light); }
+        .footer-socials { display: flex; gap: 12px; margin-top: 12px; }
+        .social-btn {
+            width: 38px; height: 38px; border: 1px solid rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); text-decoration: none; font-size: 1rem;
+            transition: all 0.3s ease; border-radius: 50%;
+        }
+        .social-btn:hover { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 10px rgba(0,210,255,0.2); }
         .footer-bottom { border-top: 1px solid var(--border-glow); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
 
         @media (max-width: 900px) {
@@ -210,7 +150,6 @@
 
     <header>
         <div class="container nav-inner">
-            <!-- Ensure your high-res generated logo asset file is named logo.png in the root folder -->
             <img src="logo.png" alt="CraftWithLaser Logo" class="logo">
             <nav>
                 <a href="#services">Services</a>
@@ -222,7 +161,6 @@
     </header>
 
     <div class="container">
-        <!-- HERO SECTION -->
         <section class="hero">
             <div>
                 <div class="hero-tag">Industrial Custom Crafting</div>
@@ -235,7 +173,6 @@
             </div>
         </section>
 
-        <!-- SERVICES SECTION -->
         <section id="services">
             <div class="section-header">
                 <h2>OUR SPECIALTIES</h2>
@@ -257,7 +194,6 @@
             </div>
         </section>
 
-        <!-- TRAINING SECTION -->
         <section id="training">
             <div class="section-header">
                 <h2>STUDIO MACHINE TRAINING</h2>
@@ -288,38 +224,48 @@
                     <p>Comprehensive slice mapping parameters, layer-height calculations, support geometry generation, and raw polymer finishing methods.</p>
                     <ul>
                         <li>FDM Solid Profiles</li>
-                        
-                        <li>Orca Prep</li>
+                        <li>SLA Resin Frameworks</li>
+                        <li>Orca / Bambu Data Prep</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- DYNAMIC PRODUCTION GALLERY -->
         <section id="gallery">
             <div class="section-header">
-                <h2>GALLERY</h2>
+                <h2>PRODUCTION GALLERY</h2>
+                <p>Real-time updates straight from our manufacturing floor. Click any piece to zoom in.</p>
             </div>
             
             <div class="gallery-grid" id="production-gallery">
-                <!-- Fallback items when running locally before CMS links attach -->
                 <div class="gallery-item">
                     <div style="width:100%; height:100%; background:#111115; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; text-align:center;">
                         <span style="font-size:2rem;">✨</span>
-                        <p style="font-family:'DM Mono'; font-size:0.75rem; color:var(--text-muted); margin-top:10px;">CMS Gallery Initialized</p>
+                        <p style="font-family:'DM Mono'; font-size:0.75rem; color:var(--text-muted); margin-top:10px;">Awaiting First Upload...</p>
                     </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- FOOTER MATRICES -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">&times;</button>
+            <img src="" alt="Zoomed View" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <img src="logo.png" alt="CraftWithLaser Logo" style="height:40px; margin-bottom:15px;">
                     <p>High-fidelity structural mark execution matrices serving clients nationwide across Australia.</p>
+                    <div class="footer-socials">
+                        <a class="social-btn" href="https://www.facebook.com/craftwithlaser" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a class="social-btn" href="https://www.instagram.com/craftwithlaser" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Studio Logistics</h4>
@@ -334,28 +280,35 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 CraftWithLaser.com.au. All Rights Reserved.</p>
-                <p style="font-family:'DM Mono'; font-size:0.75rem;">System Year: 2026</p>
             </div>
-           <div class="footer-socials">
-  <a class="social-btn" href="https://www.facebook.com/craftwithlaser" target="_blank" title="Facebook">
-    <i class="fa-brands fa-facebook-f"></i>
-  </a>
-  <a class="social-btn" href="https://www.instagram.com/craftwithlaser" target="_blank" title="Instagram">
-    <i class="fa-brands fa-instagram"></i>
-  </a>
-</div>
         </div>
     </footer>
 
-    <!-- CMS Content Connection Integration Data script -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
     <script>
-        // Fetch published structural data array from the Decap git repository layout seamlessly
-        fetch('/gallery.json')
+        const galleryContainer = document.getElementById('production-gallery');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        // Lightbox interactive click handlers
+        function openLightbox(imageSrc, title, type) {
+            lightboxImg.src = imageSrc;
+            lightboxCaption.innerHTML = `${title} <span style="color:var(--cyan); font-size:1rem; display:block; font-family:'DM Mono'; margin-top:5px;">${type}</span>`;
+            lightbox.classList.add('active');
+        }
+
+        lightboxClose.addEventListener('click', () => lightbox.classList.remove('active'));
+        lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.classList.remove('active'); });
+
+        // Fetch published structural data automatically from Decap CMS's generated folder tree
+        fetch('/gallery-index.json')
             .then(res => res.json())
             .then(data => {
-                const container = document.getElementById('production-gallery');
-                if(data && data.items && data.items.length > 0) {
-                    container.innerHTML = ''; // Clear fallback state
+                if (data && data.items && data.items.length > 0) {
+                    galleryContainer.innerHTML = ''; // Clear fallback states cleanly
                     data.items.forEach(item => {
                         const el = document.createElement('div');
                         el.className = 'gallery-item';
@@ -363,14 +316,16 @@
                             <img src="${item.image}" alt="${item.title}">
                             <div class="gallery-info">
                                 <h4>${item.title}</h4>
-                                <p>${item.type || 'Custom Craft'}</p>
+                                <p>${item.type || 'Custom Work'}</p>
                             </div>
                         `;
-                        container.appendChild(el);
+                        // Fire lightbox zoom engine when clicked
+                        el.addEventListener('click', () => openLightbox(item.image, item.title, item.type));
+                        galleryContainer.appendChild(el);
                     });
                 }
-            }).catch(err => console.log("Local development environment or data route waiting for git link."));
+            })
+            .catch(err => console.log("System initializing tracking route connection setup."));
     </script>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </body>
 </html>
