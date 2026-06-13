@@ -5,13 +5,24 @@ backend:
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
+# This automatically updates the gallery.json file for the homepage script
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
 collections:
-  - name: "gallery"
-    label: "Production Gallery"
-    folder: "data/gallery"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Project Title", name: "title", widget: "string"}
-      - {label: "Craft Type", name: "type", widget: "select", options: ["UV Printing", "Inner Crystal", "Laser Work", "3D Printing"]}
-      - {label: "Project Image File", name: "image", widget: "image"}
+  - name: "gallery_data"
+    label: "Production Gallery Data"
+    files:
+      - file: "gallery.json"
+        label: "Gallery Items List"
+        name: "gallery_list"
+        fields:
+          - name: items
+            label: "Gallery Items"
+            widget: list
+            fields:
+              - {label: "Project Title", name: "title", widget: "string"}
+              - {label: "Craft Type", name: "type", widget: "select", options: ["UV Printing", "Inner Crystal", "Laser Work", "3D Printing"]}
+              - {label: "Project Image File", name: "image", widget: "image"}
