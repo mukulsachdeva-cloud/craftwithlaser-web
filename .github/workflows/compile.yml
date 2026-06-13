@@ -3,7 +3,9 @@ on:
   push:
     paths:
       - 'data/**' # Runs only when you add new images or categories in your admin panel
-
+permissions:
+  contents: write
+  
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
