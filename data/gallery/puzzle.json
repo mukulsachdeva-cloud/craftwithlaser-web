@@ -1,5 +1,9 @@
 {
   "type": "UV Printing",
   "title": "Puzzle",
-  "image": "/assets/uploads/156825.jpg"
+  "image": "/assets/uploads/156825.jpg",
+  "category": "1",
+  "images": [
+    "/assets/uploads/156825.jpg"
+  ]
 }
