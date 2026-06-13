@@ -1,7 +1,9 @@
 backend:
   name: github
-  repo: mukulsachdeva-cloud/craftwithlaser-web # Ensure this is your username/repo
+  repo: mukulsachdeva-cloud/craftwithlaser-web
   branch: main
+  base_url: https://decap-cms-proxy.vercel.app
+  auth_endpoint: /api/auth
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
