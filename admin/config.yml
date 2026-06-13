@@ -6,17 +6,30 @@ media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
-  - name: "gallery_data"
-    label: "Production Floor Management"
-    files:
-      - file: "gallery-index.json"
-        label: "Gallery Items Inventory"
-        name: "gallery_list"
-        fields:
-          - name: items
-            label: "Uploaded Pieces"
-            widget: list
-            fields:
-              - {label: "Project Title", name: "title", widget: "string"}
-              - {label: "Craft Type", name: "type", widget: "select", options: ["UV Printing", "Inner Crystal", "Laser Work", "3D Printing"]}
-              - {label: "Project Image File", name: "image", widget: "image"}
+  # 1. This collection lets you create your distinct Gallery Sections
+  - name: "galleries"
+    label: "1. Manage Gallery Categories"
+    folder: "data/categories"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - {label: "Gallery Section ID (lowercase, no spaces)", name: "id", widget: "string"}
+      - {label: "Display Title (e.g., Laser Work)", name: "title", widget: "string"}
+      - {label: "Description/Subtitle", name: "description", widget: "string"}
+
+  # 2. This collection holds individual items with infinite image sliders
+  - name: "gallery_items"
+    label: "2. Upload Gallery Items"
+    folder: "data/gallery"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - {label: "Project Name", name: "title", widget: "string"}
+      - {label: "Belongs to Gallery Category", name: "category", widget: "relation", collection: "galleries", search_fields: ["title"], value_field: "id", display_fields: ["title"]}
+      - label: "Project Photos"
+        name: "images"
+        widget: "list"
+        summary: "{{fields.image}}"
+        field: {label: "Photo", name: "image", widget: "image"}
